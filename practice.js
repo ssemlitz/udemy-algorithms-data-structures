@@ -57,28 +57,41 @@
 
 
 
-function validAnagram(str1, str2){
-  if (str1.length !== str2.length) return false
-  let objStr1 = {}
-  for (let letter of str1) {
-    objStr1[letter] ? ++objStr1[letter] : objStr1[letter] = 1
-  }
+// function validAnagram(str1, str2){
+//   if (str1.length !== str2.length) return false
+//   let objStr1 = {}
+//   for (let letter of str1) {
+//     objStr1[letter] ? ++objStr1[letter] : objStr1[letter] = 1
+//   }
 
-  for (let letter of str2) {
-    if (!(objStr1[letter])){
-      return false
-    } else {
-      objStr1[letter] -= 1
-    }
+//   for (let letter of str2) {
+//     if (!(objStr1[letter])){
+//       return false
+//     } else {
+//       objStr1[letter] -= 1
+//     }
+//   }
+//   return true
+// }
+
+// console.log(validAnagram('', '')) // true)
+// console.log(validAnagram('aaz', 'zza')) // false
+// console.log(validAnagram('anagram', 'nagaram')) // true
+// console.log(validAnagram("rat","car")) // false) // false
+// console.log(validAnagram('awesome', 'awesom')) // false
+// console.log(validAnagram('amanaplanacanalpanama', 'acanalmanplanpamana')) // false
+// console.log(validAnagram('qwerty', 'qeywrt')) // true
+// console.log(validAnagram('texttwisttime', 'timetwisttext')) // true
+
+function countUniqueValues(arr) {
+  let uniqueValues = 0
+  if (arr.length === 0) return 0
+  for (let i=0; i<arr.length; i++) {
+    if (arr[i] !== arr[i+1]) uniqueValues += 1
   }
-  return true
+  return uniqueValues
 }
-
-console.log(validAnagram('', '')) // true)
-console.log(validAnagram('aaz', 'zza')) // false
-console.log(validAnagram('anagram', 'nagaram')) // true
-console.log(validAnagram("rat","car")) // false) // false
-console.log(validAnagram('awesome', 'awesom')) // false
-console.log(validAnagram('amanaplanacanalpanama', 'acanalmanplanpamana')) // false
-console.log(validAnagram('qwerty', 'qeywrt')) // true
-console.log(validAnagram('texttwisttime', 'timetwisttext')) // true
+console.log(countUniqueValues([1,1,1,1,1,2]))
+console.log(countUniqueValues([1,2,3,4,4,4,7,7,12,12,13]))
+console.log(countUniqueValues([]))
+console.log(countUniqueValues([-2,-1,-1,0,1]))
