@@ -125,9 +125,26 @@
 //   return minLen === Infinity ? 0 : minLen;
 // }
 
-function linearSearch(arr, val) {
-  for (let i=0; i<arr.length;i++) {
-    if (arr[i] === val) return i
+// function linearSearch(arr, val) {
+//   for (let i=0; i<arr.length;i++) {
+//     if (arr[i] === val) return i
+//   }
+//   return -1
+// }
+
+function bubbleSort(arr) {
+  for (let i=0;i<arr.length;i++) {
+    for (let j=0;j<arr.length;j++) {
+      console.log(arr, arr[j], arr[j+1])
+      if (arr[j] > arr[i]) {
+        //SWAP!
+        let temp = arr[j]
+        arr[j] = arr[j+1]
+        arr[j+1] = temp
+      }
+    }
   }
-  return -1
+  return arr
 }
+
+bubbleSort([37, 45, 29, 8])
