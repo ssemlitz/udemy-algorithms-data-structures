@@ -132,24 +132,62 @@
 //   return -1
 // }
 
-function bubbleSort(arr) {
-  let noSwaps
-  for (let i = arr.length; i > 0; i--) {
-    noSwaps = true
-    for (let j = 0; j < i-1; j++) {
-      console.log(arr, arr[j], arr[j+1])
-      if (arr[j] > arr[j+1]) {
-        //SWAP!
-        let temp = arr[j]
-        arr[j] = arr[j+1]
-        arr[j+1] = temp
-        noSwaps = false
+// function bubbleSort(arr) {
+//   let noSwaps
+//   for (let i = arr.length; i > 0; i--) {
+//     noSwaps = true
+//     for (let j = 0; j < i-1; j++) {
+//       console.log(arr, arr[j], arr[j+1])
+//       if (arr[j] > arr[j+1]) {
+//         //SWAP!
+//         let temp = arr[j]
+//         arr[j] = arr[j+1]
+//         arr[j+1] = temp
+//         noSwaps = false
+//       }
+//     }
+//     if (noSwaps) break
+//   }
+//   console.log(arr)
+//   return arr
+// }
+
+// bubbleSort([37, 45, 29, 8, 12, 88, -3])
+
+// function selectionSort(arr) {
+//   for (let i = 0; i<arr.length; i++) {
+//     let lowest = i
+//     for (let j = i+1; j<arr.length; j++) {
+//       if (arr[j] < arr[lowest]) {
+//         lowest = j
+//       }
+//     }
+//     if (i !== lowest) {
+//       let temp = arr[i]
+//       arr[i] = arr[lowest]
+//       arr[lowest] = temp
+//     }
+//   }
+//   console.log(arr)
+//   return arr
+// }
+
+// selectionSort([34, 22, 10, 19, 17])
+
+function selectionSort(arr) {
+  const swap = (arr, idx1, idx2) => ([arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]])
+
+  for (let i = 0; i < arr.length; i++) {
+    let lowest = i
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[lowest] > arr[j]) {
+        lowest = j
       }
     }
-    if (noSwaps) break
+    if (i !== lowest) swap(arr, i, lowest)
   }
   console.log(arr)
   return arr
 }
 
-bubbleSort([37, 45, 29, 8, 12, 88, -3])
+selectionSort([34, 22, 10, 19, 17])
