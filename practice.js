@@ -174,20 +174,69 @@
 
 // selectionSort([34, 22, 10, 19, 17])
 
-function selectionSort(arr) {
-  const swap = (arr, idx1, idx2) => ([arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]])
+// function selectionSort(arr) {
+//   const swap = (arr, idx1, idx2) => ([arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]])
 
-  for (let i = 0; i < arr.length; i++) {
-    let lowest = i
-    for (let j = i + 1; j < arr.length; j++) {
-      if (arr[lowest] > arr[j]) {
-        lowest = j
-      }
+//   for (let i = 0; i < arr.length; i++) {
+//     let lowest = i
+//     for (let j = i + 1; j < arr.length; j++) {
+//       if (arr[lowest] > arr[j]) {
+//         lowest = j
+//       }
+//     }
+//     if (i !== lowest) swap(arr, i, lowest)
+//   }
+//   console.log(arr)
+//   return arr
+// }
+
+// selectionSort([34, 22, 10, 19, 17])
+
+// function insertionSort(arr) {
+//   for (let i = 1; i< arr.length; i++){
+//     let current = arr[i];
+//     for(let j = i-1; j >=0 && arr[j] > current; j--){
+//       arr[j+1] = arr[j];      
+//       arr[j] = current;
+//     }
+//   }
+//   console.log(arr)
+//   return arr;
+// }
+
+// insertionSort([2,1,9,76,4])
+
+function merge(arr1, arr2) {
+  let results = []
+  let i = 0
+  let j = 0
+  while(i < arr1.length && j < arr2.length) {
+    if(arr2[j] > arr1[i]) {
+      results.push(arr1[i])
+      i++
+    } else {
+      results.push(arr2[j])
+      j++
     }
-    if (i !== lowest) swap(arr, i, lowest)
   }
-  console.log(arr)
-  return arr
+  while (i < arr1.length) {
+    results.push(arr1[i])
+    i++
+  }
+  while (j < arr2.length) {0
+    results.push(arr2[j])
+    j++
+  }
+  console.log(results)
+  return results
 }
 
-selectionSort([34, 22, 10, 19, 17])
+function mergeSort(arr){
+  if(arr.length <= 1) return arr
+  let mid = Math.floor(arr.length/2)
+  let left = mergeSort(arr.slice(0, mid))
+  let right = mergeSort(arr.slice(mid))
+  return merge(left, right)
+}
+
+mergeSort([10,24,76,73])
