@@ -206,37 +206,67 @@
 
 // insertionSort([2,1,9,76,4])
 
-function merge(arr1, arr2) {
-  let results = []
-  let i = 0
-  let j = 0
-  while(i < arr1.length && j < arr2.length) {
-    if(arr2[j] > arr1[i]) {
-      results.push(arr1[i])
-      i++
-    } else {
-      results.push(arr2[j])
-      j++
+// function merge(arr1, arr2) {
+//   let results = []
+//   let i = 0
+//   let j = 0
+//   while(i < arr1.length && j < arr2.length) {
+//     if(arr2[j] > arr1[i]) {
+//       results.push(arr1[i])
+//       i++
+//     } else {
+//       results.push(arr2[j])
+//       j++
+//     }
+//   }
+//   while (i < arr1.length) {
+//     results.push(arr1[i])
+//     i++
+//   }
+//   while (j < arr2.length) {0
+//     results.push(arr2[j])
+//     j++
+//   }
+//   console.log(results)
+//   return results
+// }
+
+// function mergeSort(arr){
+//   if(arr.length <= 1) return arr
+//   let mid = Math.floor(arr.length/2)
+//   let left = mergeSort(arr.slice(0, mid))
+//   let right = mergeSort(arr.slice(mid))
+//   return merge(left, right)
+// }
+
+// mergeSort([10,24,76,73])
+
+function pivot(arr, start=0, end=arr.length-1){
+  const swap = (arr, idx1, idx2) => {
+    [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]
+  }
+  
+  let pivot = arr[start]
+  let swapIdx = start
+
+  for(let i = start + 1; i < arr.length; i++) {
+    if(pivot > arr[i]){
+      swapIdx++
+      swap(arr, swapIdx, i)
     }
   }
-  while (i < arr1.length) {
-    results.push(arr1[i])
-    i++
-  }
-  while (j < arr2.length) {0
-    results.push(arr2[j])
-    j++
-  }
-  console.log(results)
-  return results
+  swap(arr, start, swapIdx)
+  console.log(swapIdx)
+  return swapIdx
 }
 
-function mergeSort(arr){
-  if(arr.length <= 1) return arr
-  let mid = Math.floor(arr.length/2)
-  let left = mergeSort(arr.slice(0, mid))
-  let right = mergeSort(arr.slice(mid))
-  return merge(left, right)
+function quickSort(arr, left = 0, right = arr.length - 1){
+  if (left < right) {
+    let pivotIndex = pivot(arr, left, right)
+    quickSort(arr, left, pivotIndex - 1)
+    quickSort(arr, pivotIndex + 1, right)
+  }
+  return arr
 }
 
-mergeSort([10,24,76,73])
+pivot([4,8,2,1,5,7,6,3])
