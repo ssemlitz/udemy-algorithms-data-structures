@@ -11,7 +11,7 @@ for (let i=1; i< a1.length; i++) {
   //push to new array
   Math.max(...arr[i])
 }
-
+//retrieve first element of array
 scores = [[108, 5, 7, 7], [110, 2, 6, 7], [101, 0, 1, 7]]
 
 scores.indexOf()
