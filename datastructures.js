@@ -256,13 +256,31 @@ class DoublyLinkedList {
     let newNode = new Node(val)
     let beforeNode = this.get(index - 1)
     let afterNode = beforeNode.next
-    
+
     beforeNode.next = newNode
     newNode.prev = beforeNode
     afterNode.prev = newNode
     newNode.next = afterNode
     this.length++
     return true
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined
+    if (index === 0) return !!this.shift()
+    if(index === this.length - 1) return !!this.pop()
+    
+    let removedNode = this.get(index)
+    let beforeNode = removedNode.prev
+    let afterNode = removedNode.next
+
+    beforeNode.next = afterNode
+    afterNode.prev = beforeNode
+    removedNode.prev = null
+    removedNode.next = null
+    this.length--
+    return removedNode
+
   }
 
 }
