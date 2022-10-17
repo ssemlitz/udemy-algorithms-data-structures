@@ -238,4 +238,14 @@ class DoublyLinkedList {
     }
     return current
   }
+
+  set(index, val){
+    let foundNode = this.get(index)
+    if (foundNode !== null){
+      foundNode.val = val
+      return true
+    }
+    return false
+  }
+
 }
