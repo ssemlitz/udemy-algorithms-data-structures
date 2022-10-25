@@ -7,7 +7,7 @@
 //     this.next = null
 //   }
 // }
-// 
+//
 // class SinglyLinkedList{
 //   constructor(){
 //     this.head = null
@@ -59,7 +59,7 @@
 //       this.head = newNode
 //       this.tail = this.head
 //     } else {
-//       newNode.next = this.head 
+//       newNode.next = this.head
 //       this.head = newNode
 //     }
 //     this.length++
@@ -87,7 +87,7 @@
 //     if (index < 0 || index > this.length) return false
 //     if (index === this.length) return !!this.push(val)
 //     if (index === 0) return !!this.unshift(val)
-    
+
 //     let newNode = new Node(val)
 //     let prev = this.get(index-1)
 //     let temp = prev.next
@@ -234,7 +234,7 @@
 //       while(count != index){
 //         current = current.prev
 //         count--
-//       } 
+//       }
 //     }
 //     return current
 //   }
@@ -269,7 +269,7 @@
 //     if (index < 0 || index >= this.length) return undefined
 //     if (index === 0) return !!this.shift()
 //     if(index === this.length - 1) return !!this.pop()
-    
+
 //     let removedNode = this.get(index)
 //     let beforeNode = removedNode.prev
 //     let afterNode = removedNode.next
@@ -340,7 +340,7 @@
 //       this.last = newNode
 //     }
 //     return ++this.size
-//   }    
+//   }
 
 //   dequeue(){
 //     if (!this.first) return null
@@ -355,142 +355,187 @@
 // }
 
 class Node {
-  constructor(value){
-    this.value = value
-    this.left = null
-    this.right = null
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
   }
 }
 
 class BinarySearchTree {
-  constructor(){
-    this.root = null
+  constructor() {
+    this.root = null;
   }
 
-  insert(value){
-    let newNode = new Node(value)
+  insert(value) {
+    let newNode = new Node(value);
     if (this.root === null) {
-      this.root = newNode
-      return this
+      this.root = newNode;
+      return this;
     } else {
-      let current = this.root
-      while(true){
-        if(value === current.value) return undefined
-        if(value < current.value){
-          if(current.left === null){
-            current.left = newNode
-            return this
+      let current = this.root;
+      while (true) {
+        if (value === current.value) return undefined;
+        if (value < current.value) {
+          if (current.left === null) {
+            current.left = newNode;
+            return this;
           } else {
-            current = current.left
+            current = current.left;
           }
-        } else if (value > current.value){
-          if (current.right === null){
-            current.right = newNode
-            return this
+        } else if (value > current.value) {
+          if (current.right === null) {
+            current.right = newNode;
+            return this;
           } else {
-            current = current.right
+            current = current.right;
           }
         }
       }
     }
   }
 
-  find(value){
-    if(this.root === null) return false
-    let current = this.root
-    let found = false
-    while(current && !found) {
-      if(value < current.value){
-        current = current.left
-      } else if(value > current.value){
-        current = current.right
+  find(value) {
+    if (this.root === null) return false;
+    let current = this.root;
+    let found = false;
+    while (current && !found) {
+      if (value < current.value) {
+        current = current.left;
+      } else if (value > current.value) {
+        current = current.right;
       } else {
-        found = true
+        found = true;
       }
     }
-    if(!found) return undefined
-    return current
+    if (!found) return undefined;
+    return current;
   }
-  BFS(){
-    let data = []
-    let queue = []
-    let node = this.root
+  BFS() {
+    let data = [];
+    let queue = [];
+    let node = this.root;
 
-    queue.push(node)
-    while(queue.length){
-      node = queue.shift()
-      data.push(node)
-      if(node.left) queue.push(node.left)
-      if(node.right) queue.push(node.right)
+    queue.push(node);
+    while (queue.length) {
+      node = queue.shift();
+      data.push(node);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
     }
-    return data
+    return data;
   }
-  DFSPreOrder(){
-    let data = []
-    let current = this.root
-    function traverse(node){
-      data.push(node.value)
-      if(node.left) traverse(node.left)
-      if(node.right) traverse(node.right)
+  DFSPreOrder() {
+    let data = [];
+    let current = this.root;
+    function traverse(node) {
+      data.push(node.value);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
     }
-    traverse(current)
-    return data
+    traverse(current);
+    return data;
   }
-  DFSPostOrder(){
-    let data = []
-    let current = this.root
-    function traverse(node){
-      if(node.left) traverse(node.left)
-      if(node.right) traverse(node.right)
-      data.push(node.value)
+  DFSPostOrder() {
+    let data = [];
+    let current = this.root;
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      data.push(node.value);
     }
-    traverse(current)
-    return data
+    traverse(current);
+    return data;
   }
-  DFSInOrder(){
-    let data = []
-    let current = this.root
-    function traverse(node){
-      if(node.left) traverse(node.left)
-      data.push(node.value)
-      if(node.right) traverse(node.right)
+  DFSInOrder() {
+    let data = [];
+    let current = this.root;
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      data.push(node.value);
+      if (node.right) traverse(node.right);
     }
-    traverse(current)
-    return data
+    traverse(current);
+    return data;
   }
 }
 
-let tree = new BinarySearchTree()
-tree.insert(10)
-tree.insert(6)
-tree.insert(3)
-tree.insert(8)
-tree.insert(15)
-tree.insert(20)
+let tree = new BinarySearchTree();
+tree.insert(10);
+tree.insert(6);
+tree.insert(3);
+tree.insert(8);
+tree.insert(15);
+tree.insert(20);
 
 class MaxBinaryHeap {
-  constructor(){
-    this.values = [41,39,33,18,27,12]
+  constructor() {
+    this.values = [];
   }
-  insert(element){
-    this.values.push(element)
-    this.bubbleUp()
+  insert(element) {
+    this.values.push(element);
+    this.bubbleUp();
   }
-  bubbleUp(){
-    let idx = this.values.length - 1
-    const element = this.values[idx]
-    while(idx > 0){
-      let parentIdx = Math.floor((idx - 1)/2)
-      let parent = this.values[parentIdx]
-      if(element <= parent) break
-      this.values[parentIdx] = element
-      this.values[idx] = parent
-      idx = parentIdx
-      
+  bubbleUp() {
+    let idx = this.values.length - 1;
+    const element = this.values[idx];
+    while (idx > 0) {
+      let parentIdx = Math.floor((idx - 1) / 2);
+      let parent = this.values[parentIdx];
+      if (element <= parent) break;
+      this.values[parentIdx] = element;
+      this.values[idx] = parent;
+      idx = parentIdx;
+    }
+  }
+  extractMax() {
+    const max = this.values[0];
+    const end = this.values.pop();
+    this.values[0] = end;
+    this.sinkDown();
+    return max;
+  }
+  sinkDown() {
+    let idx = 0;
+    const length = this.values.length;
+    const element = this.values[0];
+    while (true) {
+      let leftChildIdx = 2 * idx + 1;
+      let rightChildIdx = 2 * idx + 2;
+      let leftChild, rightChild;
+      let swap = null;
+
+      if (leftChildIdx < length) {
+        leftChild = this.values[leftChildIdx];
+        if (leftChild > element) {
+          swap = leftChildIdx;
+        }
+      }
+      if (rightChildIdx < length) {
+        rightChild = this.values[rightChildIdx];
+        if (
+          (swap === null && rightChild > element) ||
+          (swap !== null && rightChild > leftChild)
+        ) {
+          swap = rightChildIdx;
+        }
+      }
+
+      if (swap === null) break;
+      this.values[idx] = this.values[swap]
+      this.values[swap] = element
+      idx = swap
     }
   }
 }
 
-let heap = new MaxBinaryHeap()
-heap.insert(55)
-console.log(heap)
+let heap = new MaxBinaryHeap();
+heap.insert(41);
+heap.insert(39);
+heap.insert(33);
+heap.insert(18);
+heap.insert(27);
+heap.insert(12);
+heap.insert(55);
+console.log(heap.extractMax())
+console.log(heap.values);
