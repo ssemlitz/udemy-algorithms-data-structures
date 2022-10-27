@@ -615,71 +615,97 @@
 // console.log(ER.dequeue())
 // console.log(ER)
 
-class HashTable {
-  constructor(size=53){
-    this.keyMap = new Array(size)
+// class HashTable {
+//   constructor(size=53){
+//     this.keyMap = new Array(size)
+//   }
+
+//   _hash(key){
+//     let total = 0
+//     let WEIRD_PRIME = 31
+//     for(let i = 0; i < Math.min(key.length, 100);i++){
+//       let char = key[i]
+//       let value = char.charCodeAt(0) - 96
+//       total = (total * WEIRD_PRIME + value) % this.keyMap.length
+//     }
+//     return total
+//   }
+
+//   set(key, value){
+//     let index = this._hash(key)
+//     if(!this.keyMap[index]){
+//       this.keyMap[index] = []
+//     }
+//     this.keyMap[index].push([key, value])
+//   }
+
+//   get(key){
+//     let index = this._hash(key)
+//     if(this.keyMap[index]){
+//       for(let i = 0; i < this.keyMap[index].length; i++){
+//         if(this.keyMap[index][i][0] === key){
+//           return this.keyMap[index][i][1]
+//         }
+//       }
+//     }
+//     return undefined
+//   }
+
+//   values(){
+//     let valuesArr = []
+//     for(let i =0; i < this.keyMap.length; i++){
+//       if(this.keyMap[i]){
+//         for (let j = 0; j < this.keyMap[i].length; j++){
+//           if(!valuesArr.includes(this.keyMap[i][j][1])){
+//             valuesArr.push(this.keyMap[i][j][1])
+//           }
+//         }
+//       }
+//     }
+//     return valuesArr
+//   }
+
+//   keys(){
+//     let keysArr = []
+//     for(let i =0; i < this.keyMap.length; i++){
+//       if(this.keyMap[i]){
+//         for (let j = 0; j < this.keyMap[i].length; j++){
+//           if(!keysArr.includes(this.keyMap[i][j][0])){
+//             keysArr.push(this.keyMap[i][j][0])
+//           }
+//         }
+//       }
+//     }
+//     return keysArr
+//   }
+// }
+
+// let ht = new HashTable()
+
+// console.log(ht.set("hello world", "goodbye"))
+
+class Graph {
+  constructor(){
+    this.adjacencyList = {}
   }
 
-  _hash(key){
-    let total = 0
-    let WEIRD_PRIME = 31
-    for(let i = 0; i < Math.min(key.length, 100);i++){
-      let char = key[i]
-      let value = char.charCodeAt(0) - 96
-      total = (total * WEIRD_PRIME + value) % this.keyMap.length
-    }
-    return total
+  addVertex(vertex){
+    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = []
   }
 
-  set(key, value){
-    let index = this._hash(key)
-    if(!this.keyMap[index]){
-      this.keyMap[index] = []
-    }
-    this.keyMap[index].push([key, value])
+  addEdge(v1, v2){
+    this.adjacencyList[v1].push(v2)
+    this.adjacencyList[v2].push(v1)
   }
 
-  get(key){
-    let index = this._hash(key)
-    if(this.keyMap[index]){
-      for(let i = 0; i < this.keyMap[index].length; i++){
-        if(this.keyMap[index][i][0] === key){
-          return this.keyMap[index][i][1]
-        }
-      }
-    }
-    return undefined
+  removeEdge(vertex1, vertex2){
+    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(v => v !== vertex2)
+    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(v => v !== vertex1)
   }
 
-  values(){
-    let valuesArr = []
-    for(let i =0; i < this.keyMap.length; i++){
-      if(this.keyMap[i]){
-        for (let j = 0; j < this.keyMap[i].length; j++){
-          if(!valuesArr.includes(this.keyMap[i][j][1])){
-            valuesArr.push(this.keyMap[i][j][1])
-          }
-        }
-      }
-    }
-    return valuesArr
-  }
-
-  keys(){
-    let keysArr = []
-    for(let i =0; i < this.keyMap.length; i++){
-      if(this.keyMap[i]){
-        for (let j = 0; j < this.keyMap[i].length; j++){
-          if(!keysArr.includes(this.keyMap[i][j][0])){
-            keysArr.push(this.keyMap[i][j][0])
-          }
-        }
-      }
-    }
-    return keysArr
+  removeVertex(vertex){
+    
   }
 }
 
-let ht = new HashTable()
 
-console.log(ht.set("hello world", "goodbye"))
